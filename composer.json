@@ -1,0 +1,17 @@
+{
+    "name": "prismify/oc-toolbox-plugin",
+    "type": "october-plugin",
+    "description": "Toolbox plugin for October CMS",
+    "homepage": "https://github.com/prismify/oc-toolbox-plugin",
+    "keywords": ["october", "octobercms", "toolbox"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergey Sukhorukov",
+            "email": "sergey.sukhorukov@prismify.org"
+        }
+    ],
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
