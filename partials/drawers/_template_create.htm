@@ -3,45 +3,58 @@
   <input type="hidden" name="comment_mode" value="1" />
   <input type="hidden" name="redirect" value="true">
 
-  <div class="drawer-header">
-    <button type="button" class="close" data-dismiss="drawer">&times;</button>
-    <h4 class="drawer-title"><?= e($this->pageTitle) ?></h4>
+  <div class="layout">
+    <div class="layout-cell">
+      <div class="layout-relative">
+        <div class="layout-absolute">
+          <div class="control-scrollbar" data-control="scrollbar">
+            <div class="drawer-header">
+              <button type="button" class="close" data-dismiss="drawer">&times;</button>
+              <h4 class="drawer-title"><?= e($this->pageTitle) ?></h4>
+            </div>
+
+            <?php if (!$this->fatalError): ?>
+
+              <div class="drawer-body hide-tabs">
+                <?= $this->formRender() ?>
+              </div>
+
+              <div class="drawer-footer loading-indicator-container">
+
+                <button
+                  type="submit"
+                  data-request="onCreateRecord"
+                  data-request-data="redirect:true"
+                  data-hotkey="ctrl+s, cmd+s"
+                  data-load-indicator="<?= e(trans('backend::lang.form.creating')) ?>"
+                  data-drawer-load-indicator
+                  class="btn btn-primary oc-icon-floppy-o pull-left">
+                  <?= e(trans('backend::lang.form.create')) ?>
+                </button>
+
+              </div>
+
+            <?php else: ?>
+
+              <div class="drawer-body">
+                <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
+              </div>
+
+              <div class="drawer-footer">
+                <button
+                  type="button"
+                  class="btn btn-default oc-icon-times"
+                  data-dismiss="drawer">
+                  <?= e(trans('backend::lang.form.close')) ?>
+                </button>
+              </div>
+
+            <?php endif ?>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <?php if (!$this->fatalError): ?>
-
-    <div class="drawer-body hide-tabs">
-      <?= $this->formRender() ?>
-    </div>
-
-    <div class="drawer-footer">
-      <button
-        type="submit"
-        data-request="onCreateRecord"
-        data-request-data="redirect:true"
-        data-hotkey="ctrl+s, cmd+s"
-        data-drawer-load-indicator
-        class="btn btn-primary oc-icon-floppy-o">
-        <?= e(trans('backend::lang.form.create')) ?>
-      </button>
-    </div>
-
-  <?php else: ?>
-
-    <div class="drawer-body">
-      <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
-    </div>
-
-    <div class="drawer-footer">
-      <button
-        type="button"
-        class="btn btn-default oc-icon-times"
-        data-dismiss="drawer">
-        <?= e(trans('backend::lang.form.close')) ?>
-      </button>
-    </div>
-
-  <?php endif ?>
 
   <script>
       setTimeout(

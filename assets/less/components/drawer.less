@@ -145,10 +145,14 @@ body.drawer-open {
   }
 }
 
+.drawer-header,
+.drawer-footer {
+  background-color: @drawer-cap-bg;
+}
+
 .drawer-header {
   padding: @drawer-cap-padding-y @drawer-cap-padding-x;
   margin-bottom: 0;
-  background-color: @drawer-cap-bg;
   border-bottom: @drawer-border-width solid @drawer-border-color;
 
   .drawer-title {
@@ -163,7 +167,7 @@ body.drawer-open {
 }
 
 .drawer-footer {
-  padding: @drawer-cap-padding-y @drawer-cap-padding-x;
+  padding: (@drawer-cap-padding-y / 2) @drawer-cap-padding-x;
   background-color: @drawer-cap-bg;
   border-top: @drawer-border-width solid @drawer-border-color;
   text-align: right;
@@ -180,6 +184,12 @@ body.drawer-open {
 
   .btn-block + .btn-block {
     margin-left: 0;
+  }
+
+  &.loading-indicator-container {
+    .loading-indicator {
+      left: 15px;
+    }
   }
 }
 
@@ -228,6 +238,30 @@ body.drawer-open {
 
 .mac body.drawer-open {
   margin-right: 0;
+}
+
+.control-scrollbar {
+  .drawer-header,
+  .drawer-footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    z-index: 1000;
+  }
+
+  .drawer-header {
+    top: 0;
+  }
+
+  .drawer-footer {
+    bottom: 0;
+  }
+
+  .drawer-body {
+    position: relative;
+    margin: 60px auto;
+    z-index: 1;
+  }
 }
 
 @keyframes drawer-shake {
