@@ -1,6 +1,7 @@
 <?php namespace Prismify\Toolbox;
 
 use Backend;
+use System\Classes\CombineAssets;
 use System\Classes\PluginBase;
 
 /**
@@ -31,7 +32,13 @@ class Plugin extends PluginBase
      */
     public function register()
     {
-
+        /*
+         * Register asset bundles
+         */
+        CombineAssets::registerCallback(function ($combiner) {
+            $combiner->registerBundle('$/prismify/toolbox/assets/less/toolbox.less');
+            $combiner->registerBundle('$/prismify/toolbox/assets/js/toolbox.js');
+        });
     }
 
     /**

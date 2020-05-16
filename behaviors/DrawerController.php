@@ -1,13 +1,15 @@
 <?php namespace Prismify\Toolbox\Behaviors;
 
+use Backend\Helpers\Backend;
+use October\Rain\Support\Facades\Config;
 use Backend\Classes\Controller;
 use Backend\Classes\ControllerBehavior;
 
-class PopupController extends ControllerBehavior
+class DrawerController extends ControllerBehavior
 {
-    const CREATE_FORM   = '$/prismify/toolbox/partials/popups/_template_create.htm';
-    const UPDATE_FORM   = '$/prismify/toolbox/partials/popups/_template_update.htm';
-    const PREVIEW_FORM  = '$/prismify/toolbox/partials/popups/_template_preview.htm';
+    const CREATE_FORM   = '$/prismify/toolbox/partials/drawers/_template_create.htm';
+    const UPDATE_FORM   = '$/prismify/toolbox/partials/drawers/_template_update.htm';
+    const PREVIEW_FORM  = '$/prismify/toolbox/partials/drawers/_template_preview.htm';
 
     /**
      * @var Controller
@@ -26,6 +28,8 @@ class PopupController extends ControllerBehavior
         $this->controller = $controller;
 
         $this->setConfig($controller->listConfig, ['modelClass']);
+
+        $this->getToolboxAssets();
     }
 
     public function onCreateRecordForm()
@@ -72,5 +76,21 @@ class PopupController extends ControllerBehavior
         $this->controller->asExtension('FormController')->update_onDelete(post('record_id'));
 
         return $this->controller->listRefresh();
+    }
+
+    public function getToolboxAssets()
+    {
+        $this->addCss('/plugins/prismify/toolbox/assets/css/toolbox.css', 'Prismify.Toolbox');
+
+        if (Config::get('develop.decompileBackendAssets', false)) {
+            // Allow decompiled backend assets for Primsify.Toolbox
+            $assets = Backend::decompileAsset('../../plugins/prismify/toolbox/assets/js/toolbox.js', true);
+
+            foreach ($assets as $asset) {
+                $this->addJs($asset, 'Prismify.Toolbox');
+            }
+        } else {
+            $this->addJs('/plugins/prismify/toolbox/assets/js/toolbox-min.js', 'Prismify.Toolbox');
+        }
     }
 }

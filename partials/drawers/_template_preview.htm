@@ -1,0 +1,44 @@
+<?= Form::open(['id' => 'previewForm']) ?>
+
+  <input type="hidden" name="record_id" value="<?= $recordId ?>" />
+  <input type="hidden" name="comment_mode" value="1" />
+
+  <div class="drawer-header">
+    <button type="button" class="close" data-dismiss="drawer">&times;</button>
+    <h4 class="drawer-title"><?= e($this->pageTitle) ?></h4>
+  </div>
+
+  <?php if (!$this->fatalError): ?>
+
+    <div class="drawer-body">
+      <div class="hide-tabs">
+        <?= $this->formRenderPreview() ?>
+      </div>
+    </div>
+
+    <div class="drawer-footer">
+      <button
+        type="button"
+        class="btn btn-default"
+        data-dismiss="drawer">
+        <?= e(trans('backend::lang.form.cancel')) ?>
+      </button>
+
+      <button
+        type="button"
+        class="oc-icon-trash-o btn-icon danger pull-left"
+        data-request="onDeleteRecord"
+        data-drawer-load-indicator
+        data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">
+      </button>
+    </div>
+
+  <?php else: ?>
+
+    <div class="drawer-body">
+      <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
+    </div>
+
+  <?php endif ?>
+
+<?= Form::close() ?>

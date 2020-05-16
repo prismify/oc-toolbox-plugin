@@ -7,6 +7,21 @@ use October\Rain\Exception\ValidationException;
 trait ModelUtilities
 {
     //
+    // Getters
+    //
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    //
+    // Setters
+    //
+
+
+
+    //
     // Events
     //
 
@@ -14,7 +29,7 @@ trait ModelUtilities
     {
         if ($this->is_enabled && !$this->enabled_at) {
             throw new ValidationException([
-                'enabled_at' => Lang::get('Please specific enabled date')
+                'enabled_at' => Lang::get('prismify.toolbox::lang.models.all.fields.enabled_at.validation')
             ]);
         }
     }

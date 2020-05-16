@@ -3,7 +3,7 @@
     "type": "october-plugin",
     "description": "Toolbox plugin for October CMS",
     "homepage": "https://github.com/prismify/oc-toolbox-plugin",
-    "keywords": ["october", "octobercms", "toolbox"],
+    "keywords": ["october", "octobercms", "toolbox", "drawer", "popup"],
     "license": "MIT",
     "authors": [
         {

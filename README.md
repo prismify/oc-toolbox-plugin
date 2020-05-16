@@ -1,6 +1,6 @@
 # Toolbox
 
-A robust set of helpers for faster development.
+Toolbox plugin for October CMS
 
 # Installation
 
@@ -15,6 +15,10 @@ To install it with Composer, run `composer require prismify/oc-toolbox-plugin` f
 ## Foundation library
 
 This plugin uses [OctoberCMS](https://octobercms.com) as a foundation PHP framework.
+
+## Documentation
+
+[Drawer](docs/drawer.md)
 
 ## Changelog
 

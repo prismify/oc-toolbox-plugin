@@ -1,0 +1,246 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// Drawers
+// ---------------------------------------------------------------------------------------------------------------------
+
+// .drawer-open     - body class for killing the scroll
+// .drawer          - container to scroll within
+// .drawer-dialog   - positioning shell for the actual aside
+// .drawer-content  - actual aside w/ bg and corners and shit
+
+//
+// Dependencies
+// ---------------------------------------------------------------------------------------------------------------------
+@import "../../../../../../modules/system/assets/ui/less/global.less";
+@import "../../../../../../modules/system/assets/ui/less/icon.close.less";
+
+//
+// Variables
+//
+@drawer-spacer-y:                     @padding-standard;
+@drawer-spacer-x:                     @padding-standard;
+
+@drawer-bg:                           #ffffff;
+@drawer-border-width:                 1px;
+@drawer-border-color:                 #e5e5e5;
+
+@drawer-cap-padding-y:                @padding-standard;
+@drawer-cap-padding-x:                @padding-standard;
+@drawer-cap-bg:                       #fbfbfb;
+
+@drawer-backdrop-bg:                  @overlay-background;
+@drawer-backdrop-opacity:             .5;
+
+@drawer-header-border-color:          #e5e5e5;
+@drawer-footer-border-color:          @drawer-header-border-color;
+
+@drawer-size-xl:                      1140px;
+@drawer-size-lg:                      960px;
+@drawer-size-md:                      720px;
+@drawer-size-sm:                      540px;
+@drawer-size-xs:                      320px;
+
+@z-index-drawer-background:           500;
+@z-index-drawer:                      600;
+
+body.drawer-open {
+  overflow: hidden;
+}
+
+.drawer {
+  position: fixed;
+  min-height: 100%;
+  max-height: none;
+  overflow: auto;
+  overflow-y: scroll;
+  display: none;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: @z-index-drawer;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+
+  &.fade {
+    .drawer-dialog {
+      &.drawer-position-left {
+        transform: translate3d(-100%, 0, 0);
+      }
+      &.drawer-position-right {
+        left: auto;
+        transform: translate3d(100%, 0, 0);
+      }
+    }
+  }
+
+  &.in {
+    .drawer-dialog {
+      &.drawer-position-left {
+        transform: translate3d(0, 0, 0);
+      }
+      &.drawer-position-right {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+  }
+}
+
+.drawer-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: @z-index-drawer-background - 10;
+  background-color: @drawer-backdrop-bg;
+  .opacity(1);
+
+  &.fade {
+    .opacity(0);
+  }
+
+  &.in {
+    .opacity(@drawer-backdrop-opacity);
+  }
+}
+
+.drawer-content {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 100%;
+  word-wrap: break-word;
+  background-color: @drawer-bg;
+  background-clip: border-box;
+  border: @drawer-border-width solid @drawer-border-color;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  &.drawer-shaking {
+    .animation(drawer-shake 0.82s cubic-bezier(.36,.07,.19,.97) both);
+    .transform(translate3d(0, 0, 0));
+    .backface-visibility(hidden);
+    .perspective(1000px);
+  }
+}
+
+.drawer-body {
+  flex: 1 1 auto;
+  padding: @drawer-spacer-y @drawer-spacer-x;
+
+  > p:last-child {
+    margin-bottom: 20px;
+  }
+
+  &.drawer-no-header {
+    padding-top: @padding-standard;
+  }
+
+  &.drawer-no-footer {
+    padding-bottom: @padding-standard;
+  }
+}
+
+.drawer-header {
+  padding: @drawer-cap-padding-y @drawer-cap-padding-x;
+  margin-bottom: 0;
+  background-color: @drawer-cap-bg;
+  border-bottom: @drawer-border-width solid @drawer-border-color;
+
+  .drawer-title {
+    margin: 0;
+    font-weight: normal;
+    font-size: 18px;
+  }
+
+  .close {
+    margin-top: -2px;
+  }
+}
+
+.drawer-footer {
+  padding: @drawer-cap-padding-y @drawer-cap-padding-x;
+  background-color: @drawer-cap-bg;
+  border-top: @drawer-border-width solid @drawer-border-color;
+  text-align: right;
+  &:extend(.clearfix all);
+
+  .btn + .btn {
+    margin-left: 5px;
+    margin-bottom: 0;
+  }
+
+  .btn-group .btn + .btn {
+    margin-left: -1px;
+  }
+
+  .btn-block + .btn-block {
+    margin-left: 0;
+  }
+}
+
+.drawer-dialog {
+  position: fixed;
+  height: 100%;
+
+  &.drawer-position-left {
+    left: 0;
+  }
+
+  &.drawer-position-right {
+    right: 16px;
+  }
+
+  @media (min-width: @screen-sm-min) {
+    width: @drawer-size-md;
+
+    &.drawer-size-xs { width: @drawer-size-xs; }
+    &.drawer-size-sm { width: @drawer-size-sm; }
+  }
+  @media (min-width: @screen-md-min) {
+    &.drawer-size-md { width: @drawer-size-md; }
+    &.drawer-size-lg { width: @drawer-size-lg; }
+    &.drawer-size-xl { width: @drawer-size-xl; }
+  }
+}
+
+.control-drawer {
+  &.fade {
+    &:not(.in) {
+      pointer-events: none;
+    }
+
+    .drawer-dialog {
+      transition: all .3s ease-in-out;
+    }
+  }
+
+  &.fade.in {
+    .drawer-dialog {
+      transform: translate3d(0,0,0);
+    }
+  }
+}
+
+.mac body.drawer-open {
+  margin-right: 0;
+}
+
+@keyframes drawer-shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-3px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(3px, 0, 0);
+  }
+}

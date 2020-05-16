@@ -1,0 +1,53 @@
+<?= Form::open(['id' => 'updateForm']) ?>
+
+  <input type="hidden" name="record_id" value="<?= $recordId ?>" />
+  <input type="hidden" name="comment_mode" value="1" />
+
+  <div class="drawer-header">
+    <button type="button" class="close" data-dismiss="drawer">&times;</button>
+    <h4 class="drawer-title"><?= e($this->pageTitle) ?></h4>
+  </div>
+
+  <?php if (!$this->fatalError): ?>
+
+    <div class="drawer-body">
+      <?= $this->formRender() ?>
+    </div>
+
+    <div class="drawer-footer">
+      <button
+        type="submit"
+        data-request="onUpdateRecord"
+        data-request-data="redirect:0"
+        data-hotkey="ctrl+s, cmd+s"
+        data-drawer-load-indicator
+        class="btn btn-primary oc-icon-floppy-o">
+        <?= e(trans('backend::lang.form.save')) ?>
+      </button>
+
+      <button
+        type="button"
+        class="oc-icon-trash-o btn-icon danger pull-left"
+        data-request="onDeleteRecord"
+        data-drawer-load-indicator
+        data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">
+      </button>
+    </div>
+
+  <?php else: ?>
+
+    <div class="drawer-body">
+      <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
+    </div>
+
+  <?php endif ?>
+
+  <script>
+      setTimeout(
+          function(){
+              $('#updateForm input.form-control:first').focus()
+          }, 310
+      )
+  </script>
+
+<?= Form::close() ?>
