@@ -2,6 +2,12 @@
 
 Toolbox plugin for October CMS
 
+Create record with drawer right:
+![Create record with drawer right](https://github.com/prismify/oc-toolbox-plugin/blob/master/assets/images/gifs/create-record-with-drawer-right.gif)
+
+Update & Scroll record with drawer left:
+![Update & Scroll record with drawer left](https://github.com/prismify/oc-toolbox-plugin/blob/master/assets/images/gifs/update-record-with-drawer-left.gif)
+
 # Installation
 
 To install from the [Marketplace](https://octobercms.com/plugin/prismify-toolbox), click on the "Add to Project" button and then select the project you wish to add it to before updating the project to pull in the plugin.
