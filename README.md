@@ -26,6 +26,6 @@ View the changelog on the [Marketplace](https://octobercms.com/plugin/prismify-t
 
 ## License
 
-The ERP plugin is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Toolbox plugin is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 Developed by [Sergey Sukhorukov](https://github.com/algoriq).
