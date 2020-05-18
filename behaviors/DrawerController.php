@@ -27,8 +27,6 @@ class DrawerController extends ControllerBehavior
 
         $this->controller = $controller;
 
-        $this->setConfig($controller->listConfig, ['modelClass']);
-
         $this->getToolboxAssets();
     }
 
@@ -43,7 +41,6 @@ class DrawerController extends ControllerBehavior
     public function onCreateRecord()
     {
         $this->controller->asExtension('FormController')->create_onSave();
-        $model = $this->controller->asExtension('FormController')->formCreateModelObject();
 
         return $this->controller->listRefresh();
     }

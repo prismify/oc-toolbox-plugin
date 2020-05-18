@@ -95,7 +95,7 @@ class Plugin extends PluginBase
             'toolbox' => [
                 'label'       => 'Toolbox',
                 'url'         => Backend::url('prismify/toolbox/mycontroller'),
-                'icon'        => 'icon-leaf',
+                'icon'        => 'icon-circle-thin',
                 'permissions' => ['prismify.toolbox.*'],
                 'order'       => 500,
             ],
