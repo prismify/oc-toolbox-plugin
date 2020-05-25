@@ -72,6 +72,12 @@
          */
         if (this.options.handler) {
 
+            var url = window.location;
+            if (this.options.extraData && this.options.extraData.record_id) {
+                history.pushState({}, "", url + "/update/" + this.options.extraData.record_id);
+            } else {
+                window.history.pushState({}, "", url + "/create");
+            }
             this.$el.request(this.options.handler, {
                 data: paramToObj('data-extra-data', this.options.extraData),
                 success: function(data, textStatus, jqXHR) {
@@ -163,6 +169,7 @@
     }
 
     Drawer.prototype.dispose = function() {
+        window.history.back();
         this.$modal.off('hide.bs.modal')
         this.$modal.off('hidden.bs.modal')
         this.$modal.off('show.bs.modal')
