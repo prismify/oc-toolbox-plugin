@@ -32,8 +32,7 @@ class DrawerController extends ControllerBehavior
 
     public function onCreateRecordForm()
     {
-        $this->controller->asExtension('FormController')->create(post('record_id'));
-        $this->controller->vars['recordId'] = post('record_id');
+        $this->controller->asExtension('FormController')->create();
 
         return $this->controller->makePartial(self::CREATE_FORM);
     }
@@ -45,32 +44,30 @@ class DrawerController extends ControllerBehavior
         return $this->controller->listRefresh();
     }
 
-    public function onUpdateRecordForm()
+    public function onUpdateRecordForm($record_id)
     {
-        $this->controller->asExtension('FormController')->update(post('record_id'));
-        $this->controller->vars['recordId'] = post('record_id');
+        $this->controller->asExtension('FormController')->update($record_id);
 
         return $this->controller->makePartial(self::UPDATE_FORM);
     }
 
-    public function onUpdateRecord()
+    public function onUpdateRecord($record_id)
     {
-        $this->controller->asExtension('FormController')->update_onSave(post('record_id'));
+        $this->controller->asExtension('FormController')->update_onSave($record_id);
 
         return $this->controller->listRefresh();
     }
 
-    public function onPreviewRecordForm()
+    public function onPreviewRecordForm($record_id)
     {
-        $this->controller->asExtension('FormController')->preview(post('record_id'));
-        $this->controller->vars['recordId'] = post('record_id');
+        $this->controller->asExtension('FormController')->preview($record_id);
 
         return $this->controller->makePartial(self::PREVIEW_FORM);
     }
 
-    public function onDeleteRecord()
+    public function onDeleteRecord($record_id)
     {
-        $this->controller->asExtension('FormController')->update_onDelete(post('record_id'));
+        $this->controller->asExtension('FormController')->update_onDelete($record_id);
 
         return $this->controller->listRefresh();
     }

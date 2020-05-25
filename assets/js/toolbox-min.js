@@ -24,7 +24,7 @@ Drawer.prototype.init=function(){var self=this
 if(self.isOpen)return
 this.setBackdrop(true)
 if(!this.options.content){this.setLoading(true)}
-if(this.options.handler){var url=window.location;if(this.options.extraData&&this.options.extraData.record_id){history.pushState({},"",url+"/update/"+this.options.extraData.record_id);}else{window.history.pushState({},"",url+"/create");}
+if(this.options.handler){var url=window.location;if(this.options.extraData&&this.options.extraData.id){window.history.pushState({},"",url+"/update/"+this.options.extraData.id);}else{window.history.pushState({},"",url+"/create");}
 this.$el.request(this.options.handler,{data:paramToObj('data-extra-data',this.options.extraData),success:function(data,textStatus,jqXHR){this.success(data,textStatus,jqXHR).done(function(){self.setContent(data.result)
 $(window).trigger('ajaxUpdateComplete',[this,data,textStatus,jqXHR])
 self.triggerEvent('complete.oc.drawer')})},error:function(jqXHR,textStatus,errorThrown){this.error(jqXHR,textStatus,errorThrown).done(function(){if(self.isLoading){self.hideLoading();}else{self.hide()}
