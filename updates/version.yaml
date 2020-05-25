@@ -1,2 +1,4 @@
 1.0.1:
   - 'Initialize Toolbox'
+1.0.2:
+  - 'Added support for Nested Relationships. Thanks Marc Jauvin.🎉'
