@@ -1,6 +1,6 @@
 <?php namespace Prismify\Toolbox\Behaviors;
 
-use Backend\Helpers\Backend;
+use Backend;
 use October\Rain\Support\Facades\Config;
 use Backend\Classes\Controller;
 use Backend\Classes\ControllerBehavior;
