@@ -74,7 +74,7 @@
 
             var url = window.location;
             if (this.options.extraData && this.options.extraData.record_id) {
-                history.pushState({}, "", url + "/update/" + this.options.extraData.record_id);
+                window.history.pushState({}, "", url + "/update/" + this.options.extraData.record_id);
             } else {
                 window.history.pushState({}, "", url + "/create");
             }

@@ -30,8 +30,7 @@ class PopupController extends ControllerBehavior
 
     public function onCreateRecordForm()
     {
-        $this->controller->asExtension('FormController')->create(post('record_id'));
-        $this->controller->vars['recordId'] = post('record_id');
+        $this->controller->asExtension('FormController')->create();
 
         return $this->controller->makePartial(self::CREATE_FORM);
     }
