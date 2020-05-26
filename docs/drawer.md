@@ -39,7 +39,7 @@ Data attributes:
 - data-ajax="null" - ajax content to load
 - data-handler="null" - October ajax request name, available handlers: onCreateRecordForm, onUpdateRecordForm, onPreviewRecordForm
 - data-keyboard="true" - Allow drawer to be closed with the keyboard
-- data-extra-data="file_id: 1" - October ajax request data
+- data-extra-data="record_id: 1" - October ajax request data
 - data-size="md" - Drawer size, available sizes: xs, sm, md, lg, xl
 - data-position="left" - Drawer position, available position: left, right
 
@@ -48,5 +48,5 @@ Data attributes:
 ```
     $('a#someLink').drawer({ ajax: 'drawer-content.htm' })
     $('a#someLink').drawer({ handler: 'onLoadSomeDrawer' })
-    $('a#someLink').drawer({ handler: 'onLoadSomeDrawer', extraData: { id: 3 } })
+    $('a#someLink').drawer({ handler: 'onLoadSomeDrawer', extraData: { recor_id: 3 } })
 ```

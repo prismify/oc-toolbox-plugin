@@ -73,8 +73,8 @@
         if (this.options.handler) {
 
             var url = window.location;
-            if (this.options.extraData && this.options.extraData.id) {
-                window.history.pushState({}, "", url + "/update/" + this.options.extraData.id);
+            if (this.options.extraData && this.options.extraData.record_id) {
+                window.history.pushState({}, "", url + "/update/" + this.options.extraData.record_id);
             } else {
                 window.history.pushState({}, "", url + "/create");
             }
