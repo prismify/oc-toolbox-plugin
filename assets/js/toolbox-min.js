@@ -24,8 +24,9 @@ Drawer.prototype.init=function(){var self=this
 if(self.isOpen)return
 this.setBackdrop(true)
 if(!this.options.content){this.setLoading(true)}
-if(this.options.handler){var url=window.location;if(this.options.extraData&&this.options.extraData.record_id){window.history.pushState({},"",url+"/update/"+this.options.extraData.record_id);}else{window.history.pushState({},"",url+"/create");}
-this.$el.request(this.options.handler,{data:paramToObj('data-extra-data',this.options.extraData),success:function(data,textStatus,jqXHR){this.success(data,textStatus,jqXHR).done(function(){self.setContent(data.result)
+if(this.options.handler){var extraData=paramToObj('data-extra-data',this.options.extraData);if(extraData&&extraData.action){var url=window.location+"/"+extraData.action;if(extraData.action!='create'&&extraData.record_id){url+="/"+extraData.record_id;}
+window.history.pushState({},"",url);self.pushedState=true;}
+this.$el.request(this.options.handler,{data:extraData,success:function(data,textStatus,jqXHR){this.success(data,textStatus,jqXHR).done(function(){self.setContent(data.result)
 $(window).trigger('ajaxUpdateComplete',[this,data,textStatus,jqXHR])
 self.triggerEvent('complete.oc.drawer')})},error:function(jqXHR,textStatus,errorThrown){this.error(jqXHR,textStatus,errorThrown).done(function(){if(self.isLoading){self.hideLoading();}else{self.hide()}
 self.triggerEvent('error.oc.drawer')})}})}
@@ -47,7 +48,8 @@ $(document.body).addClass('drawer-open')})
 this.$modal.on('shown.bs.modal',function(){self.triggerEvent('shown.oc.drawer')})
 this.$modal.on('close.oc.drawer',function(){self.hide()
 return false})}
-Drawer.prototype.dispose=function(){window.history.back();this.$modal.off('hide.bs.modal')
+Drawer.prototype.dispose=function(){if(this.pushedState){window.history.back();}
+this.$modal.off('hide.bs.modal')
 this.$modal.off('hidden.bs.modal')
 this.$modal.off('show.bs.modal')
 this.$modal.off('shown.bs.modal')
