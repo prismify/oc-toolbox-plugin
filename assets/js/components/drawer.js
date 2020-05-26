@@ -71,15 +71,18 @@
          * October AJAX
          */
         if (this.options.handler) {
-
-            var url = window.location;
-            if (this.options.extraData && this.options.extraData.record_id) {
-                window.history.pushState({}, "", url + "/update/" + this.options.extraData.record_id);
-            } else {
-                window.history.pushState({}, "", url + "/create");
+            var extraData = paramToObj('data-extra-data', this.options.extraData);
+            if (extraData && extraData.action) {
+                var url = window.location + "/" + extraData.action;
+                if (extraData.action != 'create' && extraData.record_id) {
+                    url += "/" + extraData.record_id;
+                }
+                window.history.pushState({}, "", url);
+                self.pushedState = true;
             }
+
             this.$el.request(this.options.handler, {
-                data: paramToObj('data-extra-data', this.options.extraData),
+                data: extraData,
                 success: function(data, textStatus, jqXHR) {
                     this.success(data, textStatus, jqXHR).done(function(){
                         self.setContent(data.result)
@@ -169,7 +172,9 @@
     }
 
     Drawer.prototype.dispose = function() {
-        window.history.back();
+        if (this.pushedState) {
+            window.history.back();
+        }
         this.$modal.off('hide.bs.modal')
         this.$modal.off('hidden.bs.modal')
         this.$modal.off('show.bs.modal')
