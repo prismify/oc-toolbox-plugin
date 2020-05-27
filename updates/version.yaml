@@ -1,4 +1,6 @@
 1.0.1:
   - 'Initialize Toolbox'
 1.0.2:
-  - 'Added support for Nested Relationships. Thanks Marc Jauvin.🎉'
+  - 'Added support for Nested Relationships. Thanks Marc Jauvin.'
+1.0.3:
+  - 'Say hello to the October Dialog. Thanks Marc Jauvin.'

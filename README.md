@@ -5,9 +5,6 @@ Toolbox plugin for October CMS
 Create record with drawer right:
 ![Create record with drawer right](https://github.com/prismify/oc-toolbox-plugin/blob/master/assets/images/gifs/create-record-with-drawer-right.gif)
 
-Update & Scroll record with drawer left:
-![Update & Scroll record with drawer left](https://github.com/prismify/oc-toolbox-plugin/blob/master/assets/images/gifs/update-record-with-drawer-left.gif)
-
 # Installation
 
 To install from the [Marketplace](https://octobercms.com/plugin/prismify-toolbox), click on the "Add to Project" button and then select the project you wish to add it to before updating the project to pull in the plugin.
@@ -23,16 +20,22 @@ To install it with Composer, run `composer require prismify/oc-toolbox-plugin` f
 This plugin uses [OctoberCMS](https://octobercms.com) as a foundation PHP framework.
 
 ## Documentation
-
-[Drawer](https://github.com/prismify/oc-toolbox-plugin/blob/master/docs/drawer.md)
-[Dialog](https://github.com/prismify/oc-toolbox-plugin/blob/master/docs/dialog.md)
+- [Drawer](https://github.com/prismify/oc-toolbox-plugin/blob/master/docs/drawer.md)
+- [Dialog](https://github.com/prismify/oc-toolbox-plugin/blob/master/docs/dialog.md)
 
 ## Changelog
 
 View the changelog on the [Marketplace](https://octobercms.com/plugin/prismify-toolbox).
 
+## Funding
+
+If you like this plugin or if you use some of my plugins, you can help me to make new plugins and 
+provide plugins [support](https://paypal.me/sergeysukhorukov/25USD) and further development. 
+
+Give this plugin a review. :)
+
 ## License
 
 The Toolbox plugin is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
-Developed by [Sergey Sukhorukov](https://github.com/algoriq).
+Developed by [Sergey Sukhorukov](https://github.com/algoriq), along with many wonderful people.

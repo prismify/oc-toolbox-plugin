@@ -131,6 +131,10 @@ The partial for your rendered dialog should follow this structure:
 <a name="api-docs"></a>
 ## API documentation
 
+### Features:
+
+- Supports nested relationships
+
 ### Options:
 - content: content HTML string or callback
 

@@ -1,7 +1,11 @@
 # Drawers
 Displays a left side or right side drawer, based on the Bootstrap modal implementation.
 
-# Remote drawers
+- [Remote drawers](#remote-drawers)
+- [API documentation](#api-docs)
+
+<a name="remote-drawers"></a>
+## Remote drawers
 
 Content for the drawer can be loaded remotely using an AJAX request. Use the `data-handler` attribute to populate a drawer with the contents of an AJAX handler.
 
@@ -28,13 +32,18 @@ Using the `data-ajax` attribute you can refer to an external file or URL directl
     </a>
 ```
 
-# API documentation
+<a name="api-docs"></a>
+## API documentation
 
-Options:
+### Features:
+
+- Supports nested relationships
+
+### Options:
 
 - content: content HTML string or callback
 
-Data attributes:
+### Data attributes:
 
 - data-control="drawer" - enables the ajax drawer plugin
 - data-ajax="null" - ajax content to load
@@ -44,7 +53,7 @@ Data attributes:
 - data-size="md" - Drawer size, available sizes: xs, sm, md, lg, xl
 - data-position="left" - Drawer position, available position: left, right
 
-# JavaScript API
+### JavaScript API
 
 ```
     $('a#someLink').drawer({ ajax: 'drawer-content.htm' })
