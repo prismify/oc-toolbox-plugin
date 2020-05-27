@@ -1,35 +1,42 @@
-<?= Form::open(['id' => 'createForm']) ?>
+<?= Form::open(['id' => 'updateForm']) ?>
 
 	<input type="hidden" name="comment_mode" value="1" />
-	<input type="hidden" name="redirect" value="true">
 
 	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="popup">&times;</button>
+		<button type="button" class="close" data-dismiss="dialog">&times;</button>
 		<h4 class="modal-title"><?= e($this->pageTitle) ?></h4>
 	</div>
 
 	<?php if (!$this->fatalError): ?>
 
-		<div class="modal-body hide-tabs">
+		<div class="modal-body">
 			<?= $this->formRender() ?>
 		</div>
-		
+
 		<div class="modal-footer">
 			<button
 				type="submit"
-				data-request="onCreateRecord"
-				data-request-data="redirect:true"
+				data-request="onUpdateRecord"
+				data-request-data="redirect:0"
 				data-hotkey="ctrl+s, cmd+s"
-				data-popup-load-indicator
+				data-dialog-load-indicator
 				class="btn btn-primary oc-icon-floppy-o">
-				<?= e(trans('backend::lang.form.create')) ?>
+				<?= e(trans('backend::lang.form.save')) ?>
 			</button>
 
 			<button
 				type="button"
 				class="btn btn-default oc-icon-times"
-				data-dismiss="popup">
+				data-dismiss="dialog">
 				<?= e(trans('backend::lang.form.cancel')) ?>
+			</button>
+
+			<button
+				type="button"
+				class="oc-icon-trash-o btn-icon danger pull-left"
+				data-request="onDeleteRecord"
+				data-dialog-load-indicator
+				data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">
 			</button>
 		</div>
 
@@ -43,7 +50,7 @@
 			<button
 				type="button"
 				class="btn btn-default oc-icon-times"
-				data-dismiss="popup">
+				data-dismiss="dialog">
 				<?= e(trans('backend::lang.form.close')) ?>
 			</button>
 		</div>
@@ -53,7 +60,7 @@
 	<script>
 		setTimeout(
 			function(){
-			    $('#createForm input.form-control:first').focus()
+			    $('#updateForm input.form-control:first').focus()
 			}, 310
 		)
 	</script>

@@ -25,6 +25,7 @@ This plugin uses [OctoberCMS](https://octobercms.com) as a foundation PHP framew
 ## Documentation
 
 [Drawer](https://github.com/prismify/oc-toolbox-plugin/blob/master/docs/drawer.md)
+[Dialog](https://github.com/prismify/oc-toolbox-plugin/blob/master/docs/dialog.md)
 
 ## Changelog
 
