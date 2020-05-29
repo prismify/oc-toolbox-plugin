@@ -4,3 +4,5 @@
   - 'Added support for Nested Relationships. Thanks Marc Jauvin.'
 1.0.3:
   - 'Say hello to the October Dialog. Thanks Marc Jauvin.'
+1.0.4:
+  - 'Fixed bug when using both behavior controllers.'
