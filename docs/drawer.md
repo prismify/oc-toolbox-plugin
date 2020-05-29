@@ -12,7 +12,7 @@ Content for the drawer can be loaded remotely using an AJAX request. Use the `da
 ```
     <a
         data-control="drawer"
-        data-handler="onCreateRecordForm"
+        data-handler="onCreateDrawerRecordForm"
         data-extra-data="action:'create'"
         href="javascript:;"
         class="btn btn-primary btn-lg">
@@ -58,6 +58,6 @@ Using the `data-ajax` attribute you can refer to an external file or URL directl
 ```
     $('a#someLink').drawer({ ajax: 'drawer-content.htm' })
     $('a#someLink').drawer({ handler: 'onLoadSomeDrawer' })
-    $('a#someLink').drawer({ handler: 'onUpdateRecordForm', extraData: { action:'update', record_id: 3 } })
-    $('a#someLink').drawer({ handler: 'onPreviewRecordForm', extraData: { action:'preview', record_id: 3 } })
+    $('a#someLink').drawer({ handler: 'onUpdateDrawerRecordForm', extraData: { action:'update', record_id: 3 } })
+    $('a#someLink').drawer({ handler: 'onPreviewDrawerRecordForm', extraData: { action:'preview', record_id: 3 } })
 ```
