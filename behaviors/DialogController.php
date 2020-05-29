@@ -33,7 +33,7 @@ class DialogController extends ControllerBehavior
         $this->getToolboxAssets();
     }
 
-    public function onCreateRecordForm()
+    public function onCreateDialogRecordForm()
     {
         $this->controller->asExtension('FormController')->create();
 
@@ -48,7 +48,7 @@ class DialogController extends ControllerBehavior
         return $this->controller->listRefresh();
     }
 
-    public function onUpdateRecordForm($record_id)
+    public function onUpdateDialogRecordForm($record_id)
     {
         $this->controller->asExtension('FormController')->update($record_id);
 
@@ -62,7 +62,7 @@ class DialogController extends ControllerBehavior
         return $this->controller->listRefresh();
     }
 
-    public function onPreviewRecordForm($record_id)
+    public function onPreviewDialogRecordForm($record_id)
     {
         $this->controller->asExtension('FormController')->preview($record_id);
 
