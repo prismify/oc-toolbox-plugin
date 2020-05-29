@@ -152,6 +152,6 @@ The partial for your rendered dialog should follow this structure:
 $('a#someLink').dialog({ ajax: 'dialog-content.htm' })
 $('a#someLink').dialog({ handler: 'onLoadSomePopup' })
 $('a#someLink').dialog({ handler: 'onLoadSomePopup', extraData: { record_id: 3 } })
-$('a#someLink').dialog({ handler: 'onUpdateRecordForm', extraData: { action:'update', record_id: 3 } })
-$('a#someLink').dialog({ handler: 'onPreviewRecordForm', extraData: { action:'preview', record_id: 3 } })
+$('a#someLink').dialog({ handler: 'onUpdateDialogRecordForm', extraData: { action:'update', record_id: 3 } })
+$('a#someLink').dialog({ handler: 'onPreviewDialogRecordForm', extraData: { action:'preview', record_id: 3 } })
 ```

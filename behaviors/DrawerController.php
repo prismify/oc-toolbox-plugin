@@ -30,7 +30,7 @@ class DrawerController extends ControllerBehavior
         $this->getToolboxAssets();
     }
 
-    public function onCreateRecordForm()
+    public function onCreateDrawerRecordForm()
     {
         $this->controller->asExtension('FormController')->create();
 
@@ -44,7 +44,7 @@ class DrawerController extends ControllerBehavior
         return $this->controller->listRefresh();
     }
 
-    public function onUpdateRecordForm($record_id)
+    public function onUpdateDrawerRecordForm($record_id)
     {
         $this->controller->asExtension('FormController')->update($record_id);
 
@@ -58,7 +58,7 @@ class DrawerController extends ControllerBehavior
         return $this->controller->listRefresh();
     }
 
-    public function onPreviewRecordForm($record_id)
+    public function onPreviewDrawerRecordForm($record_id)
     {
         $this->controller->asExtension('FormController')->preview($record_id);
 
