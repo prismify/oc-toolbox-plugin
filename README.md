@@ -2,7 +2,7 @@
 
 Toolbox plugin for October CMS
 
-Create record with drawer right:
+Create record with dialog right:
 ![Create record with drawer right](https://github.com/prismify/oc-toolbox-plugin/blob/master/assets/images/gifs/create-record-with-drawer-right.gif)
 
 # Installation
@@ -20,7 +20,6 @@ To install it with Composer, run `composer require prismify/oc-toolbox-plugin` f
 This plugin uses [OctoberCMS](https://octobercms.com) as a foundation PHP framework.
 
 ## Documentation
-- [Drawer](https://github.com/prismify/oc-toolbox-plugin/blob/master/docs/drawer.md)
 - [Dialog](https://github.com/prismify/oc-toolbox-plugin/blob/master/docs/dialog.md)
 
 ## Changelog

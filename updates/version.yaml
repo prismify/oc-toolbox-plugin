@@ -6,3 +6,5 @@
   - Say hello to the October Dialog. Thanks Marc Jauvin.
 1.0.4:
   - !!! Fixed bug when using both behavior controllers.
+1.0.5:
+  - !!! Merged behavior controllers into one with all the features.
