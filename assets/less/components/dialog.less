@@ -42,16 +42,21 @@
 @z-index-drawer-background:           500;
 @z-index-drawer:                      600;
 
-body.drawer-open {
+body.dialog-open {
   overflow: hidden;
 }
 
-.drawer {
+.mac body.dialog-open {
+  margin-right: 0;
+}
+
+.dialog {
   position: fixed;
   min-height: 100%;
   max-height: none;
   overflow: auto;
   overflow-y: scroll;
+  outline: 0;
   display: none;
   top: 0;
   right: 0;
@@ -59,33 +64,43 @@ body.drawer-open {
   left: 0;
   z-index: @z-index-drawer;
   -webkit-overflow-scrolling: touch;
-  outline: 0;
 
   &.fade {
-    .drawer-dialog {
-      &.drawer-position-left {
-        transform: translate3d(-100%, 0, 0);
+    .dialog-container {
+      &.dialog-mode-drawer {
+        &.dialog-position-left {
+          .transform(translate3d(-100%, 0, 0));
+        }
+        &.dialog-position-right {
+          left: auto;
+          .transform(translate3d(100%, 0, 0));
+        }
       }
-      &.drawer-position-right {
-        left: auto;
-        transform: translate3d(100%, 0, 0);
+
+      &.dialog-mode-popup {
+        .transform(translate3d(0, 100%, 0));
       }
     }
   }
 
   &.in {
-    .drawer-dialog {
-      &.drawer-position-left {
-        transform: translate3d(0, 0, 0);
+    .dialog-container {
+      &.dialog-mode-drawer {
+        &.dialog-position-left {
+          transform: translate3d(0, 0, 0);
+        }
+        &.dialog-position-right {
+          transform: translate3d(0, 0, 0);
+        }
       }
-      &.drawer-position-right {
-        transform: translate3d(0, 0, 0);
+      &.dialog-mode-popup {
+        .transform(translate3d(0, 0, 0));
       }
     }
   }
 }
 
-.drawer-backdrop {
+.dialog-backdrop {
   position: fixed;
   top: 0;
   right: 0;
@@ -104,7 +119,7 @@ body.drawer-open {
   }
 }
 
-.drawer-content {
+.dialog-content {
   position: relative;
   display: flex;
   min-width: 0;
@@ -114,21 +129,21 @@ body.drawer-open {
   background-clip: border-box;
   border: @drawer-border-width solid @drawer-border-color;
 
-  form {
-    display: flex;
-    flex-direction: column;
+  .control-scrollbar {
     min-height: 100%;
+    flex-direction: column;
+    display: flex;
   }
 
-  &.drawer-shaking {
-    .animation(drawer-shake 0.82s cubic-bezier(.36,.07,.19,.97) both);
+  &.dialog-shaking {
+    .animation(dialog-shake 0.82s cubic-bezier(.36,.07,.19,.97) both);
     .transform(translate3d(0, 0, 0));
     .backface-visibility(hidden);
     .perspective(1000px);
   }
 }
 
-.drawer-body {
+.dialog-body {
   flex: 1 1 auto;
   padding: @drawer-spacer-y @drawer-spacer-x;
 
@@ -136,26 +151,26 @@ body.drawer-open {
     margin-bottom: 20px;
   }
 
-  &.drawer-no-header {
+  &.dialog-no-header {
     padding-top: @padding-standard;
   }
 
-  &.drawer-no-footer {
+  &.dialog-no-footer {
     padding-bottom: @padding-standard;
   }
 }
 
-.drawer-header,
-.drawer-footer {
+.dialog-header,
+.dialog-footer {
   background-color: @drawer-cap-bg;
 }
 
-.drawer-header {
+.dialog-header {
   padding: @drawer-cap-padding-y @drawer-cap-padding-x;
   margin-bottom: 0;
   border-bottom: @drawer-border-width solid @drawer-border-color;
 
-  .drawer-title {
+  .dialog-title {
     margin: 0;
     font-weight: normal;
     font-size: 18px;
@@ -166,11 +181,12 @@ body.drawer-open {
   }
 }
 
-.drawer-footer {
+.dialog-footer {
   padding: (@drawer-cap-padding-y / 2) @drawer-cap-padding-x;
   background-color: @drawer-cap-bg;
   border-top: @drawer-border-width solid @drawer-border-color;
   text-align: right;
+
   &:extend(.clearfix all);
 
   .btn + .btn {
@@ -193,78 +209,85 @@ body.drawer-open {
   }
 }
 
-.drawer-dialog {
+.dialog-container {
   position: fixed;
   height: 100%;
 
-  &.drawer-position-left {
-    left: 0;
+  &.dialog-mode-popup {
+    position: relative;
+    height: 80%;
+    margin: 65px auto 30px auto;
   }
 
-  &.drawer-position-right {
-    right: 16px;
+  &.dialog-mode-drawer {
+    &.dialog-position-left {
+      left: 0;
+    }
+
+    &.dialog-position-right {
+      right: 16px;
+    }
   }
 
   @media (min-width: @screen-sm-min) {
     width: @drawer-size-md;
 
-    &.drawer-size-xs { width: @drawer-size-xs; }
-    &.drawer-size-sm { width: @drawer-size-sm; }
+    &.dialog-size-xs { width: @drawer-size-xs; }
+    &.dialog-size-sm { width: @drawer-size-sm; }
   }
   @media (min-width: @screen-md-min) {
-    &.drawer-size-md { width: @drawer-size-md; }
-    &.drawer-size-lg { width: @drawer-size-lg; }
-    &.drawer-size-xl { width: @drawer-size-xl; }
+    &.dialog-size-md { width: @drawer-size-md; }
+    &.dialog-size-lg { width: @drawer-size-lg; }
+    &.dialog-size-xl { width: @drawer-size-xl; }
   }
 }
 
-.control-drawer {
+.control-dialog {
+
   &.fade {
     &:not(.in) {
       pointer-events: none;
     }
 
-    .drawer-dialog {
+    .dialog-container {
       transition: all .3s ease-in-out;
     }
   }
 
   &.fade.in {
-    .drawer-dialog {
-      transform: translate3d(0,0,0);
+    .dialog-container {
+      transform: translate3d(0, 0, 0);
     }
   }
 }
 
-.mac body.drawer-open {
-  margin-right: 0;
-}
-
 .control-scrollbar {
-  .drawer-header,
-  .drawer-footer {
-    position: fixed;
+  .dialog-header,
+  .dialog-footer {
+    position: sticky;
     width: 100%;
     left: 0;
     z-index: 1000;
   }
 
-  .drawer-header {
+  .dialog-header {
     top: 0;
   }
 
-  .drawer-footer {
+  .dialog-footer {
     bottom: 0;
+    &.loading-indicator-container {
+      min-height: 55px;
+    }
   }
 
-  .drawer-body {
+  .dialog-body {
     position: relative;
-    margin: 60px auto;
     z-index: 1;
   }
 }
 
-@keyframes drawer-shake {
+@keyframes dialog-shake {
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
   }

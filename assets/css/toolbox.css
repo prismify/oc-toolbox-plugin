@@ -2,44 +2,48 @@
 .close:hover,
 .close:focus {color:#000;text-decoration:none;cursor:pointer;opacity:0.5;filter:alpha(opacity=50)}
 button.close {padding:0;cursor:pointer;background:transparent;border:0;-webkit-appearance:none}
-body.drawer-open {overflow:hidden}
-.drawer {position:fixed;min-height:100%;max-height:none;overflow:auto;overflow-y:scroll;display:none;top:0;right:0;bottom:0;left:0;z-index:600;-webkit-overflow-scrolling:touch;outline:0}
-.drawer.fade .drawer-dialog.drawer-position-left {transform:translate3d(-100%,0,0)}
-.drawer.fade .drawer-dialog.drawer-position-right {left:auto;transform:translate3d(100%,0,0)}
-.drawer.in .drawer-dialog.drawer-position-left {transform:translate3d(0,0,0)}
-.drawer.in .drawer-dialog.drawer-position-right {transform:translate3d(0,0,0)}
-.drawer-backdrop {position:fixed;top:0;right:0;bottom:0;left:0;z-index:490;background-color:rgba(0,0,0,0.2);opacity:1;filter:alpha(opacity=100)}
-.drawer-backdrop.fade {opacity:0;filter:alpha(opacity=0)}
-.drawer-backdrop.in {opacity:0.5;filter:alpha(opacity=50)}
-.drawer-content {position:relative;display:flex;min-width:0;min-height:100%;word-wrap:break-word;background-color:#fff;background-clip:border-box;border:1px solid #e5e5e5}
-.drawer-content form {display:flex;flex-direction:column;min-height:100%}
-.drawer-content.drawer-shaking {-webkit-animation:drawer-shake 0.82s cubic-bezier(0.36,0.07000000000000001,0.19,0.97) both;animation:drawer-shake 0.82s cubic-bezier(0.36,0.07000000000000001,0.19,0.97) both;-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;-webkit-perspective:1000px;-moz-perspective:1000px;perspective:1000px}
-.drawer-body {flex:1 1 auto;padding:20px 20px}
-.drawer-body >p:last-child {margin-bottom:20px}
-.drawer-body.drawer-no-header {padding-top:20px}
-.drawer-body.drawer-no-footer {padding-bottom:20px}
-.drawer-header,
-.drawer-footer {background-color:#fbfbfb}
-.drawer-header {padding:20px 20px;margin-bottom:0;border-bottom:1px solid #e5e5e5}
-.drawer-header .drawer-title {margin:0;font-weight:normal;font-size:18px}
-.drawer-header .close {margin-top:-2px}
-.drawer-footer {padding:10px 20px;background-color:#fbfbfb;border-top:1px solid #e5e5e5;text-align:right}
-.drawer-footer .btn + .btn {margin-left:5px;margin-bottom:0}
-.drawer-footer .btn-group .btn + .btn {margin-left:-1px}
-.drawer-footer .btn-block + .btn-block {margin-left:0}
-.drawer-footer.loading-indicator-container .loading-indicator {left:15px}
-.drawer-dialog {position:fixed;height:100%}
-.drawer-dialog.drawer-position-left {left:0}
-.drawer-dialog.drawer-position-right {right:16px}
-@media (min-width:768px) {.drawer-dialog {width:720px }.drawer-dialog.drawer-size-xs {width:320px }.drawer-dialog.drawer-size-sm {width:540px }}
-@media (min-width:992px) {.drawer-dialog.drawer-size-md {width:720px }.drawer-dialog.drawer-size-lg {width:960px }.drawer-dialog.drawer-size-xl {width:1140px }}
-.control-drawer.fade:not(.in) {pointer-events:none}
-.control-drawer.fade .drawer-dialog {transition:all 0.3s ease-in-out}
-.control-drawer.fade.in .drawer-dialog {transform:translate3d(0,0,0)}
-.mac body.drawer-open {margin-right:0}
-.control-scrollbar .drawer-header,
-.control-scrollbar .drawer-footer {position:fixed;width:100%;left:0;z-index:1000}
-.control-scrollbar .drawer-header {top:0}
-.control-scrollbar .drawer-footer {bottom:0}
-.control-scrollbar .drawer-body {position:relative;margin:60px auto;z-index:1}
-@keyframes drawer-shake {10%,90% {transform:translate3d(-1px,0,0) }20%,80% {transform:translate3d(2px,0,0) }30%,50%,70% {transform:translate3d(-3px,0,0) }40%,60% {transform:translate3d(3px,0,0) }}
+body.dialog-open {overflow:hidden}
+.mac body.dialog-open {margin-right:0}
+.dialog {position:fixed;min-height:100%;max-height:none;overflow:auto;overflow-y:scroll;outline:0;display:none;top:0;right:0;bottom:0;left:0;z-index:600;-webkit-overflow-scrolling:touch}
+.dialog.fade .dialog-container.dialog-mode-drawer.dialog-position-left {-webkit-transform:translate3d(-100%,0,0);-ms-transform:translate3d(-100%,0,0);transform:translate3d(-100%,0,0)}
+.dialog.fade .dialog-container.dialog-mode-drawer.dialog-position-right {left:auto;-webkit-transform:translate3d(100%,0,0);-ms-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0)}
+.dialog.fade .dialog-container.dialog-mode-popup {-webkit-transform:translate3d(0,100%,0);-ms-transform:translate3d(0,100%,0);transform:translate3d(0,100%,0)}
+.dialog.in .dialog-container.dialog-mode-drawer.dialog-position-left {transform:translate3d(0,0,0)}
+.dialog.in .dialog-container.dialog-mode-drawer.dialog-position-right {transform:translate3d(0,0,0)}
+.dialog.in .dialog-container.dialog-mode-popup {-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+.dialog-backdrop {position:fixed;top:0;right:0;bottom:0;left:0;z-index:490;background-color:rgba(0,0,0,0.2);opacity:1;filter:alpha(opacity=100)}
+.dialog-backdrop.fade {opacity:0;filter:alpha(opacity=0)}
+.dialog-backdrop.in {opacity:0.5;filter:alpha(opacity=50)}
+.dialog-content {position:relative;display:flex;min-width:0;min-height:100%;word-wrap:break-word;background-color:#fff;background-clip:border-box;border:1px solid #e5e5e5}
+.dialog-content .control-scrollbar {min-height:100%;flex-direction:column;display:flex}
+.dialog-content.dialog-shaking {-webkit-animation:dialog-shake 0.82s cubic-bezier(0.36,0.07000000000000001,0.19,0.97) both;animation:dialog-shake 0.82s cubic-bezier(0.36,0.07000000000000001,0.19,0.97) both;-webkit-transform:translate3d(0,0,0);-ms-transform:translate3d(0,0,0);transform:translate3d(0,0,0);-webkit-backface-visibility:hidden;-moz-backface-visibility:hidden;backface-visibility:hidden;-webkit-perspective:1000px;-moz-perspective:1000px;perspective:1000px}
+.dialog-body {flex:1 1 auto;padding:20px 20px}
+.dialog-body >p:last-child {margin-bottom:20px}
+.dialog-body.dialog-no-header {padding-top:20px}
+.dialog-body.dialog-no-footer {padding-bottom:20px}
+.dialog-header,
+.dialog-footer {background-color:#fbfbfb}
+.dialog-header {padding:20px 20px;margin-bottom:0;border-bottom:1px solid #e5e5e5}
+.dialog-header .dialog-title {margin:0;font-weight:normal;font-size:18px}
+.dialog-header .close {margin-top:-2px}
+.dialog-footer {padding:10px 20px;background-color:#fbfbfb;border-top:1px solid #e5e5e5;text-align:right}
+.dialog-footer .btn + .btn {margin-left:5px;margin-bottom:0}
+.dialog-footer .btn-group .btn + .btn {margin-left:-1px}
+.dialog-footer .btn-block + .btn-block {margin-left:0}
+.dialog-footer.loading-indicator-container .loading-indicator {left:15px}
+.dialog-container {position:fixed;height:100%}
+.dialog-container.dialog-mode-popup {position:relative;height:80%;margin:65px auto 30px auto}
+.dialog-container.dialog-mode-drawer.dialog-position-left {left:0}
+.dialog-container.dialog-mode-drawer.dialog-position-right {right:16px}
+@media (min-width:768px) {.dialog-container {width:720px }.dialog-container.dialog-size-xs {width:320px }.dialog-container.dialog-size-sm {width:540px }}
+@media (min-width:992px) {.dialog-container.dialog-size-md {width:720px }.dialog-container.dialog-size-lg {width:960px }.dialog-container.dialog-size-xl {width:1140px }}
+.control-dialog.fade:not(.in) {pointer-events:none}
+.control-dialog.fade .dialog-container {transition:all 0.3s ease-in-out}
+.control-dialog.fade.in .dialog-container {transform:translate3d(0,0,0)}
+.control-scrollbar .dialog-header,
+.control-scrollbar .dialog-footer {position:sticky;width:100%;left:0;z-index:1000}
+.control-scrollbar .dialog-header {top:0}
+.control-scrollbar .dialog-footer {bottom:0}
+.control-scrollbar .dialog-footer.loading-indicator-container {min-height:55px}
+.control-scrollbar .dialog-body {position:relative;z-index:1}
+@keyframes dialog-shake {10%,90% {transform:translate3d(-1px,0,0) }20%,80% {transform:translate3d(2px,0,0) }30%,50%,70% {transform:translate3d(-3px,0,0) }40%,60% {transform:translate3d(3px,0,0) }}

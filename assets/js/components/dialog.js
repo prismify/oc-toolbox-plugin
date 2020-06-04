@@ -27,8 +27,8 @@
         this.allowHide  = true
 
         this.$container = this.createDialogContainer()
-        this.$content = this.$container.find('.modal-content:first')
-        this.$dialog = this.$container.find('.modal-dialog:first')
+        this.$content = this.$container.find('.dialog-content:first')
+        this.$dialog = this.$container.find('.dialog-container:first')
         this.$modal = this.$container.modal({ show: false, backdrop: false, keyboard: this.options.keyboard })
 
         $.oc.foundation.controlUtils.markDisposable(element)
@@ -47,8 +47,9 @@
         keyboard: true,
         extraData: {},
         content: null,
-        size: null,
-        adaptiveHeight: false,
+        mode: 'popup',
+        size: 'md',
+        position: 'left',
         zIndex: null
     }
 
@@ -89,7 +90,6 @@
                     this.success(data, textStatus, jqXHR).done(function(){
                         self.setContent(data.result)
                         $(window).trigger('ajaxUpdateComplete', [this, data, textStatus, jqXHR])
-                        self.triggerEvent('dialogComplete') // Deprecated
                         self.triggerEvent('complete.oc.dialog')
                     })
                 },
@@ -100,7 +100,6 @@
                         } else {
                             self.hide()
                         }
-                        self.triggerEvent('dialogError') // Deprecated
                         self.triggerEvent('error.oc.dialog')
                     })
                 }
@@ -155,14 +154,14 @@
         this.$modal.on('hidden.bs.modal', function(){
             self.triggerEvent('hidden.oc.dialog')
             self.$container.remove()
-            $(document.body).removeClass('modal-open')
+            $(document.body).removeClass('dialog-open')
             self.dispose()
         })
 
         this.$modal.on('show.bs.modal', function(){
             self.isOpen = true
             self.setBackdrop(true)
-            $(document.body).addClass('modal-open')
+            $(document.body).addClass('dialog-open')
         })
 
         this.$modal.on('shown.bs.modal', function(){
@@ -205,23 +204,28 @@
     Dialog.prototype.createDialogContainer = function() {
         var
             modal = $('<div />').prop({
-                class: 'control-dialog modal fade',
+                class: 'control-dialog dialog fade',
                 role: 'dialog',
                 tabindex: -1
             }),
-            modalDialog = $('<div />').addClass('modal-dialog'),
-            modalContent = $('<div />').addClass('modal-content')
+            modalContainer = $('<div />').addClass('dialog-container'),
+            modalContent = $('<div />').addClass('dialog-content')
+
+        if (this.options.mode)
+            modalContainer.addClass('dialog-mode-' + this.options.mode)
+
+        if (this.options.mode === "drawer") {
+            if (this.options.position)
+                modalContainer.addClass('dialog-position-' + this.options.position)
+        }
 
         if (this.options.size)
-            modalDialog.addClass('size-' + this.options.size)
-
-        if (this.options.adaptiveHeight)
-            modalDialog.addClass('adaptive-height')
+            modalContainer.addClass('dialog-size-' + this.options.size)
 
         if (this.options.zIndex !== null)
             modal.css('z-index', this.options.zIndex + 20)
 
-        return modal.append(modalDialog.append(modalContent))
+        return modal.append(modalContainer.append(modalContent))
     }
 
     Dialog.prototype.setContent = function(contents) {
@@ -254,7 +258,7 @@
             this.$backdrop.appendTo(document.body)
 
             this.$backdrop.addClass('in')
-            this.$backdrop.append($('<div class="modal-content dialog-loading-indicator" />'))
+            this.$backdrop.append($('<div class="dialog-loading-indicator" />'))
         }
         else if (!val && this.$backdrop) {
             this.$backdrop.remove()
@@ -318,7 +322,6 @@
         this.$modal.modal('show')
 
         this.$modal.on('click.dismiss.dialog', '[data-dismiss="dialog"]', $.proxy(this.hide, this))
-        this.triggerEvent('dialogShow') // Deprecated
         this.triggerEvent('show.oc.dialog')
 
         // Fixes an issue where the Modal makes `position: fixed` elements relative to itself
@@ -329,7 +332,6 @@
     Dialog.prototype.hide = function() {
         if (!this.isOpen) return
 
-        this.triggerEvent('dialogHide') // Deprecated
         this.triggerEvent('hide.oc.dialog')
 
         if (this.allowHide)
@@ -355,7 +357,6 @@
     }
 
     Dialog.prototype.toggle = function() {
-        this.triggerEvent('dialogToggle', [this.$modal]) // Deprecated
         this.triggerEvent('toggle.oc.dialog', [this.$modal])
 
         this.$modal.modal('toggle')

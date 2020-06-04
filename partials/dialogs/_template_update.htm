@@ -2,60 +2,71 @@
 
 	<input type="hidden" name="comment_mode" value="1" />
 
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="dialog">&times;</button>
-		<h4 class="modal-title"><?= e($this->pageTitle) ?></h4>
+	<div class="layout">
+		<div class="layout-cell">
+			<div class="layout-relative">
+				<div class="layout-absolute">
+					<div class="control-scrollbar" data-control="scrollbar">
+
+						<div class="dialog-header">
+							<button type="button" class="close" data-dismiss="dialog">&times;</button>
+							<h4 class="dialog-title"><?= e($this->pageTitle) ?></h4>
+						</div>
+
+						<?php if (!$this->fatalError): ?>
+
+							<div class="dialog-body">
+								<?= $this->formRender() ?>
+							</div>
+
+							<div class="dialog-footer loading-indicator-container">
+								<button
+									type="submit"
+									data-request="onUpdateRecord"
+									data-request-data="redirect:0"
+									data-hotkey="ctrl+s, cmd+s"
+									data-dialog-load-indicator
+									class="btn btn-primary oc-icon-floppy-o">
+									<?= e(trans('backend::lang.form.save')) ?>
+								</button>
+
+								<button
+									type="button"
+									class="btn btn-default oc-icon-times"
+									data-dismiss="dialog">
+									<?= e(trans('backend::lang.form.cancel')) ?>
+								</button>
+
+								<button
+									type="button"
+									class="oc-icon-trash-o btn-icon danger pull-left"
+									data-request="onDeleteRecord"
+									data-dialog-load-indicator
+									data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">
+								</button>
+							</div>
+
+						<?php else: ?>
+
+							<div class="dialog-body">
+								<p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
+							</div>
+
+							<div class="dialog-footer loading-indicator-container">
+								<button
+									type="button"
+									class="btn btn-default oc-icon-times"
+									data-dismiss="dialog">
+									<?= e(trans('backend::lang.form.close')) ?>
+								</button>
+							</div>
+
+						<?php endif ?>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-
-	<?php if (!$this->fatalError): ?>
-
-		<div class="modal-body">
-			<?= $this->formRender() ?>
-		</div>
-
-		<div class="modal-footer">
-			<button
-				type="submit"
-				data-request="onUpdateRecord"
-				data-request-data="redirect:0"
-				data-hotkey="ctrl+s, cmd+s"
-				data-dialog-load-indicator
-				class="btn btn-primary oc-icon-floppy-o">
-				<?= e(trans('backend::lang.form.save')) ?>
-			</button>
-
-			<button
-				type="button"
-				class="btn btn-default oc-icon-times"
-				data-dismiss="dialog">
-				<?= e(trans('backend::lang.form.cancel')) ?>
-			</button>
-
-			<button
-				type="button"
-				class="oc-icon-trash-o btn-icon danger pull-left"
-				data-request="onDeleteRecord"
-				data-dialog-load-indicator
-				data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">
-			</button>
-		</div>
-
-	<?php else: ?>
-
-		<div class="modal-body">
-			<p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
-		</div>
-
-		<div class="modal-footer">
-			<button
-				type="button"
-				class="btn btn-default oc-icon-times"
-				data-dismiss="dialog">
-				<?= e(trans('backend::lang.form.close')) ?>
-			</button>
-		</div>
-
-	<?php endif ?>
 
 	<script>
 		setTimeout(
