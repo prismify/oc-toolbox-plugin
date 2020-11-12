@@ -3,23 +3,23 @@
 return [
     'details' => [
         'name' => 'Toolbox',
-        'description' => 'Toolbox vtičnik za October CMS',
+        'description' => 'Плагин Toolbox для October CMS',
         'author' => 'Prismify',
     ],
     'controllers' => [
         'all' => [
             'filter' => [
                 'created_at' => [
-                    'label' => 'Datum ustvarjanja'
+                    'label' => 'Дата создания'
                 ],
                 'updated_at' => [
-                    'label' => 'Datum posodobljen'
+                    'label' => 'Дата изменеия'
                 ],
                 'enabled_at' => [
-                    'label' => 'Datum omogočen'
+                    'label' => 'Дата включения'
                 ],
                 'deleted_at' => [
-                    'label' => 'Datum izbrisa'
+                    'label' => 'Дата удаления'
                 ],
             ]
         ]
@@ -28,25 +28,25 @@ return [
         'all' => [
             'columns' => [
                 'created_at' => [
-                    'label' => 'Datum ustvarjanja'
+                    'label' => 'Дата создания'
                 ],
                 'updated_at' => [
-                    'label' => 'Datum posodobljen'
+                    'label' => 'Дата изменеия'
                 ],
                 'enabled_at' => [
-                    'label' => 'Datum omogočen'
+                    'label' => 'Дата включения'
                 ],
                 'deleted_at' => [
-                    'label' => 'Datum izbrisa'
+                    'label' => 'Дата удаления'
                 ],
             ],
             'fields' => [
                 'is_enabled' => [
-                    'label' => 'Je omogočeno'
+                    'label' => 'Включено'
                 ],
                 'enabled_at' => [
-                    'label' => 'Omogočeno dne',
-                    'validation' => 'Prosimo vpišite datum objave'
+                    'label' => 'Включить в',
+                    'validation' => 'Пожалуйста укажите дату включения'
                 ]
             ]
         ]
