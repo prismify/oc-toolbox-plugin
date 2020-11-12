@@ -8,3 +8,5 @@
   - !!! Fixed bug when using both behavior controllers.
 1.0.5:
   - !!! Merged behavior controllers into one with all the features.
+1.0.6:
+  - Added component utilities (Thanks Samuel Georges) and small improvements.
