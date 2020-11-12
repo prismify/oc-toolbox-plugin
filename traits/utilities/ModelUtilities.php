@@ -1,5 +1,6 @@
 <?php namespace Prismify\Toolbox\Traits\Utilities;
 
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Lang;
 use October\Rain\Exception\ValidationException;
@@ -44,7 +45,31 @@ trait ModelUtilities
             ->whereNotNull('is_enabled')
             ->where('is_enabled', true)
             ->whereNotNull('enabled_at')
-            ->where('enabled_at', '<', Carbon::now())
-            ;
+            ->where('enabled_at', '<', Carbon::now());
+    }
+
+    //
+    // Helpers
+    //
+
+    protected function lookupUser($user = null)
+    {
+        if (!$user)
+            $user = Auth::getUser();
+
+        if (!$user)
+            return false;
+
+        return $user;
+    }
+
+    protected function shortDecodeId($int)
+    {
+        return ((int) base_convert(str_rot13($int), 36, 10)) - 100;
+    }
+
+    protected function shortEncodeId($int)
+    {
+        return str_rot13(base_convert((int) $int + 100, 10, 36));
     }
 }

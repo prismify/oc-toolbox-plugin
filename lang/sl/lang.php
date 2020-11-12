@@ -50,5 +50,12 @@ return [
                 ]
             ]
         ]
+    ],
+    'traits' => [
+        'component_utilities' => [
+            'lookup_user' => [
+                'exception' => 'Morate biti prijavljeni'
+            ]
+        ]
     ]
 ];
